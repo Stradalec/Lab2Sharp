@@ -30,6 +30,7 @@
         {
             this.dichotomyButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.GoldenRatioButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.dichotomyButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.GoldenRatioButton, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(35, 67);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -62,6 +64,18 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(334, 390);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // GoldenRatioButton
+            // 
+            this.GoldenRatioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.GoldenRatioButton.AutoSize = true;
+            this.GoldenRatioButton.Location = new System.Drawing.Point(178, 3);
+            this.GoldenRatioButton.Name = "GoldenRatioButton";
+            this.GoldenRatioButton.Size = new System.Drawing.Size(144, 74);
+            this.GoldenRatioButton.TabIndex = 1;
+            this.GoldenRatioButton.Text = "Метод Золотого Сечения";
+            this.GoldenRatioButton.UseVisualStyleBackColor = true;
+            this.GoldenRatioButton.Click += new System.EventHandler(this.GoldenRatioButton_Click);
             // 
             // MainForm
             // 
@@ -84,6 +98,7 @@
 
         private System.Windows.Forms.Button dichotomyButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button GoldenRatioButton;
     }
 }
 

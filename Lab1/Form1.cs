@@ -22,5 +22,11 @@ namespace Lab1
             dichotomyForm dichotomyForm = new dichotomyForm();
             dichotomyForm.Show();
         }
+
+        private void GoldenRatioButton_Click(object sender, EventArgs e)
+        {
+            GoldenRatioForm goldenRatioForm = new GoldenRatioForm();
+            goldenRatioForm.Show();
+        }
     }
 }

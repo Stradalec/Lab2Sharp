@@ -1,5 +1,4 @@
-﻿using OxyPlot.Series;
-using OxyPlot.WindowsForms;
+﻿using org.mariuszgromada.math.mxparser;
 using OxyPlot;
 using System;
 using System.Collections.Generic;
@@ -8,18 +7,15 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using org.mariuszgromada.math.mxparser;
-using LiveCharts.Wpf.Charts.Base;
-using System.Text.RegularExpressions;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace Lab1
 {
-    public partial class dichotomyForm : Form, IView
+    public partial class GoldenRatioForm : Form, IView
     {
+
         private Expression expression;
         private Function Function;
 
@@ -45,11 +41,11 @@ namespace Lab1
         private Rectangle recTextBoxH;
         private Rectangle recTextBoxV;
 
-        public dichotomyForm()
+        public GoldenRatioForm()
         {
             InitializeComponent();
             Presenter presenter = new Presenter(this);
-            this.Resize += DichotomyForm_Resize;
+            this.Resize += GoldenRatioForm_Resize;
             formOriginalSize = this.Size;
             recFunctionTextBox = new Rectangle(function.Location, function.Size);
             recGraph = new Rectangle(pvGraph.Location, pvGraph.Size);
@@ -71,6 +67,7 @@ namespace Lab1
             recTextBoxH = new Rectangle(epsilonBox.Location, epsilonBox.Size);
             recTextBoxV = new Rectangle(LimitationBox.Location, LimitationBox.Size);
         }
+
         private void AutoResize(Control control, Rectangle rectangle)
         {
             double xRatio = (double)(this.Width) / (double)(formOriginalSize.Width);
@@ -85,7 +82,7 @@ namespace Lab1
             control.Size = new Size(newWidth, newHeight);
         }
 
-        private void DichotomyForm_Resize(object sender, EventArgs e)
+        private void GoldenRatioForm_Resize(object sender, EventArgs e)
         {
             AutoResize(function, recFunctionTextBox);
             AutoResize(pvGraph, recGraph);
@@ -108,8 +105,6 @@ namespace Lab1
             AutoResize(LimitationBox, recTextBoxV);
 
         }
-
-
         double IView.lowLimit()
         {
             return Convert.ToDouble(functionLimitBox.Text);
@@ -125,9 +120,9 @@ namespace Lab1
             return function.Text;
         }
 
-        double IView.firstSide() 
+        double IView.firstSide()
         {
-            return Convert.ToDouble(FirstIntervalLimitation.Text); 
+            return Convert.ToDouble(FirstIntervalLimitation.Text);
         }
 
         double IView.Interval()
@@ -145,9 +140,9 @@ namespace Lab1
             return Convert.ToDouble(epsilonBox.Text);
         }
 
-        Expression IView.Expression() 
+        Expression IView.Expression()
         {
-            return expression; 
+            return expression;
         }
 
         Function IView.Function()
@@ -166,17 +161,11 @@ namespace Lab1
             expression = outputExpression;
             Function = outputFunction;
         }
-        void IView.ShowResult(double result, double errorCheck) 
+        void IView.ShowResult(double result, double functionResult)
         {
-            if (errorCheck != 1)
-            {
-                result = Math.Round(result, Convert.ToInt16(LimitationBox.Text));
-                MessageBox.Show("Результат:" + result.ToString(), "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("В выбранном интервале корней нет", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            result = Math.Round(result, Convert.ToInt16(LimitationBox.Text));
+            functionResult = Math.Round(functionResult, Convert.ToInt16(LimitationBox.Text));
+            MessageBox.Show("Минимум:" + result.ToString() + "\n" + "Значение минимума:" + functionResult.ToString(), "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
@@ -185,7 +174,7 @@ namespace Lab1
             Regex regex = new Regex(@"^[\d,-]+$");
             bool result = true;
             bool mathces;
-            if (string.IsNullOrEmpty(FirstIntervalLimitation.Text) || (mathces = regex.IsMatch(FirstIntervalLimitation.Text)) == false) 
+            if (string.IsNullOrEmpty(FirstIntervalLimitation.Text) || (mathces = regex.IsMatch(FirstIntervalLimitation.Text)) == false)
             {
                 result = false;
                 MessageBox.Show("Ошибка ввода левого ограничения интервала", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -205,7 +194,8 @@ namespace Lab1
                 result = false;
                 MessageBox.Show("Ошибка ввода значения требуемой точности", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if(string.IsNullOrEmpty(interval.Text) || (mathces = regex.IsMatch(interval.Text)) == false) {
+            else if (string.IsNullOrEmpty(interval.Text) || (mathces = regex.IsMatch(interval.Text)) == false)
+            {
                 result = false;
                 MessageBox.Show("Ошибка ввода значения числа точек построения осей", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -222,7 +212,7 @@ namespace Lab1
             return result;
         }
 
-        private void toolStripTextBox1_Click(object sender, EventArgs inputEvent)
+        private void toolStripTextBox1_Click_1(object sender, EventArgs inputEvent)
         {
             if (ValidateText())
             {
@@ -230,17 +220,12 @@ namespace Lab1
             }
         }
 
-        private void toolStripTextBox2_Click(object sender, EventArgs inputEvent)
+        private void toolStripTextBox2_Click_1(object sender, EventArgs inputEvent)
         {
             if (ValidateText())
             {
-                StartDichotomy(sender, inputEvent);
+                StartGoldenRatio(sender, inputEvent);
             }
         }
     }
 }
-
-
-
-
-

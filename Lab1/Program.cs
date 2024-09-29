@@ -29,6 +29,7 @@ namespace Lab1
 
         event EventHandler<EventArgs> StartDichotomy;
         event EventHandler<EventArgs> CreateGraph;
+        event EventHandler<EventArgs> StartGoldenRatio;
     }
 
 
@@ -149,6 +150,50 @@ namespace Lab1
             return (result, errorCheck);
         }
 
+        public (double, double) GoldenRatio(Function inputFunction, Expression inputExpression, double leftLimitation, double rightLimitation, double epsilon)
+        {
+            double result = double.NaN;
+            double functionResult = 0;
+
+
+            double firstValue = SolveFunc(inputFunction, leftLimitation.ToString().Replace(",", "."));
+
+            double secondValue = SolveFunc(inputFunction, rightLimitation.ToString().Replace(",", "."));
+
+            double goldenRatio = (Math.Sqrt(5) - 1) / 2;
+
+            double xFirst = rightLimitation - goldenRatio * (rightLimitation - leftLimitation);
+            double xSecond = leftLimitation + goldenRatio * (rightLimitation - leftLimitation);
+
+            double resultOfXFirst = SolveFunc(inputFunction, xFirst.ToString().Replace(",", "."));
+            double resultOfXSecond = SolveFunc(inputFunction, xSecond.ToString().Replace(",", "."));
+
+
+            while ((rightLimitation - leftLimitation) > epsilon)
+            {
+                if (resultOfXFirst < resultOfXSecond) 
+                {
+                    rightLimitation = xSecond;
+                    xSecond = xFirst;
+                    xFirst = rightLimitation - goldenRatio * (rightLimitation - leftLimitation);
+                    resultOfXFirst = SolveFunc(inputFunction, xFirst.ToString().Replace(",", "."));
+                    resultOfXSecond = SolveFunc(inputFunction, xSecond.ToString().Replace(",", "."));
+                }
+                else 
+                {
+                    leftLimitation = xFirst;
+                    xFirst = xSecond;
+                    xSecond = leftLimitation + goldenRatio * (rightLimitation - leftLimitation);
+                    resultOfXFirst = SolveFunc(inputFunction, xFirst.ToString().Replace(",", "."));
+                    resultOfXSecond = SolveFunc(inputFunction, xSecond.ToString().Replace(",", "."));
+                }
+            }
+            result = (leftLimitation + rightLimitation) / 2;
+            functionResult = SolveFunc(inputFunction, result.ToString().Replace(",", "."));
+
+            return (result, functionResult);
+        }
+
         public double SolveFunc(Function function, string x)
         {
             return new org.mariuszgromada.math.mxparser.Expression($"f({x})", function).calculate();
@@ -168,6 +213,7 @@ namespace Lab1
 
             mainView.StartDichotomy += new EventHandler<EventArgs>(Dichotomy);
             mainView.CreateGraph += new EventHandler<EventArgs>(CreateGraph);
+            mainView.StartGoldenRatio += new EventHandler<EventArgs>(GoldenRatio);
         }
 
         private void Dichotomy(object sender, EventArgs inputEvent)
@@ -179,6 +225,12 @@ namespace Lab1
         {
             var output = model.CreateGraph(mainView.Interval(), mainView.lowLimit(), mainView.upLimit(), mainView.returnFunction());
             mainView.ShowGraph(output.Item1, output.Item2, output.Item3);
+        }
+
+        private void GoldenRatio(object sender, EventArgs inputEvent)
+        {
+            var output = model.GoldenRatio(mainView.Function(), mainView.Expression(), mainView.firstSide(), mainView.secondSide(), mainView.epsilon());
+            mainView.ShowResult(output.Item1, output.Item2);
         }
     }
 
