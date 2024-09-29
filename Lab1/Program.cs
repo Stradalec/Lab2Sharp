@@ -21,9 +21,9 @@ namespace Lab1
         double secondSide();
         double epsilon();
         Expression Expression();
-
         Function Function();
 
+        bool MinimumOrMaximum();
         void ShowGraph(PlotModel plotModel, Function outputFunction, Expression outputExpression);
         void ShowResult(double input, double errorCheck);
 
@@ -150,11 +150,15 @@ namespace Lab1
             return (result, errorCheck);
         }
 
-        public (double, double) GoldenRatio(Function inputFunction, Expression inputExpression, double leftLimitation, double rightLimitation, double epsilon)
+        public (double, double) GoldenRatio(Function inputFunction, string inputExpression, double leftLimitation, double rightLimitation, double epsilon, bool choice = true)
         {
             double result = double.NaN;
             double functionResult = 0;
 
+            if (!choice)
+            {
+                inputFunction = new Function("f(x) = " + "-" + inputExpression);
+            }
 
             double firstValue = SolveFunc(inputFunction, leftLimitation.ToString().Replace(",", "."));
 
@@ -169,7 +173,7 @@ namespace Lab1
             double resultOfXSecond = SolveFunc(inputFunction, xSecond.ToString().Replace(",", "."));
 
 
-            while ((rightLimitation - leftLimitation) > epsilon)
+            while (Math.Abs(rightLimitation - leftLimitation) > epsilon)
             {
                 if (resultOfXFirst < resultOfXSecond) 
                 {
@@ -229,7 +233,7 @@ namespace Lab1
 
         private void GoldenRatio(object sender, EventArgs inputEvent)
         {
-            var output = model.GoldenRatio(mainView.Function(), mainView.Expression(), mainView.firstSide(), mainView.secondSide(), mainView.epsilon());
+            var output = model.GoldenRatio(mainView.Function(), mainView.returnFunction(), mainView.firstSide(), mainView.secondSide(), mainView.epsilon(), mainView.MinimumOrMaximum());
             mainView.ShowResult(output.Item1, output.Item2);
         }
     }

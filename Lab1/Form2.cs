@@ -155,6 +155,11 @@ namespace Lab1
             return Function;
         }
 
+        bool IView.MinimumOrMaximum()
+        {
+            return true;
+        }
+
         public event EventHandler<EventArgs> StartDichotomy;
         public event EventHandler<EventArgs> CreateGraph;
         public event EventHandler<EventArgs> StartGoldenRatio;

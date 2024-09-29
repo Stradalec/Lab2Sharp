@@ -18,6 +18,7 @@ namespace Lab1
 
         private Expression expression;
         private Function Function;
+        private bool checkExistence = false;
 
         private Size formOriginalSize;
         private Rectangle recCalculateButton;
@@ -150,6 +151,24 @@ namespace Lab1
             return Function;
         }
 
+
+        bool IView.MinimumOrMaximum()
+        {
+            bool choice = true;
+            if (minimumButton.Checked == true)
+            {
+                return true;
+            }
+            else if (maximumButton.Checked == true) 
+            {
+                return false;
+            }
+            else
+            {
+                return choice;
+            }
+        }
+
         public event EventHandler<EventArgs> StartDichotomy;
         public event EventHandler<EventArgs> CreateGraph;
         public event EventHandler<EventArgs> StartGoldenRatio;
@@ -160,12 +179,25 @@ namespace Lab1
             this.pvGraph.Model = plotModel;
             expression = outputExpression;
             Function = outputFunction;
+            checkExistence = true;
         }
         void IView.ShowResult(double result, double functionResult)
         {
             result = Math.Round(result, Convert.ToInt16(LimitationBox.Text));
             functionResult = Math.Round(functionResult, Convert.ToInt16(LimitationBox.Text));
-            MessageBox.Show("Минимум:" + result.ToString() + "\n" + "Значение минимума:" + functionResult.ToString(), "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (minimumButton.Checked)
+            {
+                MessageBox.Show("Минимум:" + result.ToString() + "\n" + "Значение минимума:" + functionResult.ToString(), "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (maximumButton.Checked)
+            {
+                MessageBox.Show("Максимум:" + result.ToString() + "\n" + "Значение максимума:" + functionResult.ToString(), "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Минимум:" + result.ToString() + "\n" + "Значение минимума:" + functionResult.ToString(), "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
 
@@ -224,7 +256,15 @@ namespace Lab1
         {
             if (ValidateText())
             {
-                StartGoldenRatio(sender, inputEvent);
+                if (checkExistence)
+                {
+                    StartGoldenRatio(sender, inputEvent);
+                }
+                else
+                {
+                    MessageBox.Show("Не задана функция и не построен график", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
     }

@@ -50,7 +50,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.minimumButton = new System.Windows.Forms.RadioButton();
+            this.maximumButton = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -250,11 +254,43 @@
             this.toolStripTextBox2.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolStripTextBox2.Click += new System.EventHandler(this.toolStripTextBox2_Click_1);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.maximumButton);
+            this.groupBox1.Controls.Add(this.minimumButton);
+            this.groupBox1.Location = new System.Drawing.Point(68, 371);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(151, 67);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Ищем:";
+            // 
+            // minimumButton
+            // 
+            this.minimumButton.AutoSize = true;
+            this.minimumButton.Location = new System.Drawing.Point(15, 19);
+            this.minimumButton.Name = "minimumButton";
+            this.minimumButton.Size = new System.Drawing.Size(73, 17);
+            this.minimumButton.TabIndex = 0;
+            this.minimumButton.Text = "Минимум";
+            this.minimumButton.UseVisualStyleBackColor = true;
+            // 
+            // maximumButton
+            // 
+            this.maximumButton.AutoSize = true;
+            this.maximumButton.Location = new System.Drawing.Point(15, 42);
+            this.maximumButton.Name = "maximumButton";
+            this.maximumButton.Size = new System.Drawing.Size(79, 17);
+            this.maximumButton.TabIndex = 1;
+            this.maximumButton.Text = "Максимум";
+            this.maximumButton.UseVisualStyleBackColor = true;
+            // 
             // GoldenRatioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -279,6 +315,8 @@
             this.Text = "Метод Золотого сечения";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,5 +346,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton maximumButton;
+        private System.Windows.Forms.RadioButton minimumButton;
     }
 }
