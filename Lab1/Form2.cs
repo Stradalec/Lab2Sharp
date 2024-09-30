@@ -29,7 +29,7 @@ namespace Lab1
         private Rectangle recGraph;
         private Rectangle recLabel1;
         private Rectangle recLabel2;
-        private Rectangle recLabel3;
+        private Rectangle recFunctionLabel;
         private Rectangle recLabel4;
         private Rectangle recLabel5;
         private Rectangle recLabel6;
@@ -37,13 +37,13 @@ namespace Lab1
         private Rectangle recLimitationLabel;
         private Rectangle recLeftLabel;
         private Rectangle recRightLabel;
-        private Rectangle recTextBoxA;
-        private Rectangle recTextBoxB;
+        private Rectangle recIntervalBox;
+        private Rectangle recFunctionLimitBox;
         private Rectangle recTextBoxE;
-        private Rectangle recTextBoxF;
-        private Rectangle recTextBoxG;
-        private Rectangle recTextBoxH;
-        private Rectangle recTextBoxV;
+        private Rectangle recFirstLimitationBox;
+        private Rectangle recSecondLimitationBox;
+        private Rectangle recEpsilonBox;
+        private Rectangle recLimitBox;
 
         public dichotomyForm()
         {
@@ -55,7 +55,7 @@ namespace Lab1
             recGraph = new Rectangle(pvGraph.Location, pvGraph.Size);
             recLabel1 = new Rectangle(label1.Location, label1.Size);
             recLabel2 = new Rectangle(label2.Location, label2.Size);
-            recLabel3 = new Rectangle(functionLabel.Location, functionLabel.Size);
+            recFunctionLabel = new Rectangle(functionLabel.Location, functionLabel.Size);
             recLabel4 = new Rectangle(label4.Location, label4.Size);
             recLabel5 = new Rectangle(label5.Location, label5.Size);
             recLabel6 = new Rectangle(label6.Location, label6.Size);
@@ -63,13 +63,13 @@ namespace Lab1
             recLimitationLabel = new Rectangle(limitationLabel.Location, limitationLabel.Size);
             recLeftLabel = new Rectangle(leftLabel.Location, leftLabel.Size);
             recRightLabel = new Rectangle(rightLabel.Location, rightLabel.Size);
-            recTextBoxA = new Rectangle(interval.Location, interval.Size);
-            recTextBoxB = new Rectangle(functionLimitBox.Location, functionLimitBox.Size);
+            recIntervalBox = new Rectangle(interval.Location, interval.Size);
+            recFunctionLimitBox = new Rectangle(functionLimitBox.Location, functionLimitBox.Size);
             recTextBoxE = new Rectangle(textBox1.Location, textBox1.Size);
-            recTextBoxF = new Rectangle(FirstIntervalLimitation.Location, FirstIntervalLimitation.Size);
-            recTextBoxG = new Rectangle(SecondIntervalLimitation.Location, SecondIntervalLimitation.Size);
-            recTextBoxH = new Rectangle(epsilonBox.Location, epsilonBox.Size);
-            recTextBoxV = new Rectangle(LimitationBox.Location, LimitationBox.Size);
+            recFirstLimitationBox = new Rectangle(FirstIntervalLimitation.Location, FirstIntervalLimitation.Size);
+            recSecondLimitationBox = new Rectangle(SecondIntervalLimitation.Location, SecondIntervalLimitation.Size);
+            recEpsilonBox = new Rectangle(epsilonBox.Location, epsilonBox.Size);
+            recLimitBox = new Rectangle(LimitationBox.Location, LimitationBox.Size);
         }
         private void AutoResize(Control control, Rectangle rectangle)
         {
@@ -91,7 +91,7 @@ namespace Lab1
             AutoResize(pvGraph, recGraph);
             AutoResize(label1, recLabel1);
             AutoResize(label2, recLabel2);
-            AutoResize(functionLabel, recLabel3);
+            AutoResize(functionLabel, recFunctionLabel);
             AutoResize(label4, recLabel4);
             AutoResize(label5, recLabel5);
             AutoResize(label6, recLabel6);
@@ -99,13 +99,13 @@ namespace Lab1
             AutoResize(limitationLabel, recLimitationLabel);
             AutoResize(leftLabel, recLeftLabel);
             AutoResize(rightLabel, recRightLabel);
-            AutoResize(interval, recTextBoxA);
-            AutoResize(functionLimitBox, recTextBoxB);
+            AutoResize(interval, recIntervalBox);
+            AutoResize(functionLimitBox, recFunctionLimitBox);
             AutoResize(textBox1, recTextBoxE);
-            AutoResize(FirstIntervalLimitation, recTextBoxF);
-            AutoResize(SecondIntervalLimitation, recTextBoxG);
-            AutoResize(epsilonBox, recTextBoxH);
-            AutoResize(LimitationBox, recTextBoxV);
+            AutoResize(FirstIntervalLimitation, recFirstLimitationBox);
+            AutoResize(SecondIntervalLimitation, recSecondLimitationBox);
+            AutoResize(epsilonBox, recEpsilonBox);
+            AutoResize(LimitationBox, recLimitBox);
 
         }
 
