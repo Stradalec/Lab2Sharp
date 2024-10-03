@@ -157,7 +157,7 @@ namespace Lab1
 
             if (!choice)
             {
-                inputFunction = new Function("f(x) = " + "-" + inputExpression);
+                inputFunction = new Function("f(x) = " + "-(" + inputExpression + ")");
             }
 
             double firstValue = SolveFunc(inputFunction, leftLimitation.ToString().Replace(",", "."));

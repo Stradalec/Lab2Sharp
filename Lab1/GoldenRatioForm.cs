@@ -198,6 +198,7 @@ namespace Lab1
             }
             else if (maximumButton.Checked)
             {
+                functionResult = Math.Abs(functionResult);
                 MessageBox.Show("Максимум:" + result.ToString() + "\n" + "Значение максимума:" + functionResult.ToString(), "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
